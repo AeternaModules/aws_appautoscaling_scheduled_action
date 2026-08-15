@@ -28,7 +28,7 @@ output "appautoscaling_scheduled_actions_scalable_dimension" {
 }
 output "appautoscaling_scheduled_actions_scalable_target_action" {
   description = "Map of scalable_target_action values across all appautoscaling_scheduled_actions, keyed the same as var.appautoscaling_scheduled_actions"
-  value       = { for k, v in aws_appautoscaling_scheduled_action.appautoscaling_scheduled_actions : k => v.scalable_target_action if v.scalable_target_action != null && length(v.scalable_target_action) > 0 }
+  value       = { for k, v in aws_appautoscaling_scheduled_action.appautoscaling_scheduled_actions : k => one(v.scalable_target_action) if v.scalable_target_action != null && length(v.scalable_target_action) > 0 }
 }
 output "appautoscaling_scheduled_actions_schedule" {
   description = "Map of schedule values across all appautoscaling_scheduled_actions, keyed the same as var.appautoscaling_scheduled_actions"
